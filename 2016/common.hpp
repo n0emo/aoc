@@ -76,7 +76,7 @@ static inline std::string_view trim_right(std::string_view str, std::string_view
     return std::string_view(str.data(), index + 1);
 }
 
-static inline std::string_view trim(std::string_view str, std::string_view chars)
+static inline std::string_view trim(std::string_view str, std::string_view chars = " ")
 {
     return trim_left(trim_right(str, chars), chars);
 }
