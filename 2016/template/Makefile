@@ -1,4 +1,4 @@
-CXX = clang++ -std=c++23
+CXX = clang++ -std=c++20
 CFLAGS = -Wall -Wextra -pedantic -ggdb
 ARGS = 
 
