@@ -24,25 +24,27 @@ std::string read_all_text(std::filesystem::path filename)
 	return buf.str();
 }
 
-static inline strvec split(std::string_view str, const std::string &delim)
+static inline std::vector<std::string_view> split(std::string_view str, std::string_view delim)
 {
     if (str.empty())
-        return {""};
+    {
+		return {""};
+	}
 
-    strvec result;
+	std::vector<std::string_view> result;
     size_t index = 0;
     size_t count = 0;
 
     for (size_t i = 0; i < str.size(); i++)
     {
         char c = str[i];
-        if (delim.find(c) == std::string::npos)
+        if (delim.find(c) == std::string_view::npos)
         {
             count++;
         }
         else
         {
-            result.emplace_back(str.substr(index, count));
+			result.emplace_back(str.substr(index, count));
             index = i + 1;
             count = 0;
         }
