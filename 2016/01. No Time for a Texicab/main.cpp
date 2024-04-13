@@ -1,5 +1,4 @@
 #include "../common.hpp"
-#include <exception>
 
 enum TurnDirection
 {
