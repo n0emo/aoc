@@ -1,11 +1,14 @@
 CXX = clang++ -std=c++20
 CFLAGS = -Wall -Wextra -pedantic -ggdb
-ARGS = 
+ARGS = test1.txt
 
-main: main.cpp
+main: main.cpp ../common.hpp
 	$(CXX) $(CFLAGS) main.cpp -o main
 
 .PHONY: run
 run: main
-	./main $(ARGS)
-
+	@for test in $(shell find . -name '*.txt'); \
+	do \
+		echo "Running with" $$test ":" ; \
+		./main $$test | sed 's/^/    /'; \
+	done
