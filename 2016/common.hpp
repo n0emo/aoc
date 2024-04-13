@@ -24,7 +24,7 @@ std::string read_all_text(std::filesystem::path filename)
     return buf.str();
 }
 
-static inline std::vector<std::string_view> split(std::string_view str, std::string_view delim)
+static inline std::vector<std::string_view> split(std::string_view str, std::string_view delim = " ")
 {
     if (str.empty())
     {
