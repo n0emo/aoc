@@ -118,4 +118,16 @@ static inline std::string_view trim(std::string_view str, std::string_view chars
     return trim_left(trim_right(str, chars), chars);
 }
 
+static inline int parse_int(std::string_view s)
+{
+    int result;
+    std::from_chars(s.data(), s.data() + s.size(), result);
+    return result;
+}
+
+static inline std::string as_string(std::string_view s)
+{
+    return {s.data(), s.size()};
+}
+
 #endif // COMMON_HPP
