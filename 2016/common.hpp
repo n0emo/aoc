@@ -54,6 +54,43 @@ static inline std::vector<std::string_view> split(std::string_view str, std::str
     return result;
 }
 
+static inline std::vector<std::string_view> lines(std::string_view str)
+{
+    if (str.empty())
+    {
+        return {""};
+    }
+    std::string delim = "\r\n";
+
+    std::vector<std::string_view> result;
+    size_t index = 0;
+    size_t count = 0;
+
+    for (size_t i = 0; i < str.size(); i++)
+    {
+        int ret = 0;
+        switch(str[i])
+        {
+            case '\r':
+                ret = 1;
+            case '\n':
+                result.emplace_back(str.substr(index, count));
+                index = i + 1 + ret;
+                count = 0;
+                break;
+            default:
+                count++;
+        }
+    }
+
+    if (result.back().empty())
+    {
+        result.pop_back();
+    }
+
+    return result;
+}
+
 static inline std::string_view trim_left(std::string_view str, std::string_view chars)
 {
     size_t index = 0;
